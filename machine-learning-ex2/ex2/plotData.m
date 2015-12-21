@@ -11,19 +11,10 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
-
-
-
-
-
-
-
-
+idx = y == 1;
+plot(X(idx,1), X(idx,2), 'k+', X(~idx,1), X(~idx,2), 'ko');
 
 % =========================================================================
-
-
-
 hold off;
 
 end

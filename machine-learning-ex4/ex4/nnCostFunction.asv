@@ -88,19 +88,18 @@ J = sum(J);
 
 for t = 1:m
     
-  % Feedforward
+  % 1. Feedforward
   a1 = [1 X(t,:)]; % add a bias to the input layer
   z2 = a1 * Theta1';
   a2 = [1 sigmoid(z2)]; % add a bias to the hidden layer
   z3 = a2 * Theta2';
   a3 = sigmoid(z3); % output layer
   
-  % Compute deltas
   d3 = a3 - ymat(t,:);
+  
   d2 = d3 * Theta2 .* [1 sigmoidGradient(z2)];
   d2 = d2(2:end);
   
-  % Update gradients
   Theta2_grad = Theta2_grad + d3' * a2;
   Theta1_grad = Theta1_grad + d2' * a1;
 end
@@ -111,11 +110,10 @@ Theta2_grad = Theta2_grad / m;
 %% Part 3 -------------------------------------------------------------
 
 % Regularization
-temp1 = Theta1(:,:);
-temp2 = Theta2(:,:);
+temp1 = Theta1(:);
+temp2 = Theta2(:);
 
-temp1(:,1) = 0;
-temp2(:,1) = 0;
+temp(
 
 % Regularized cost
 reg = (sum(sum(temp1 .^ 2)) + sum(sum(temp2 .^ 2))) * (lambda / (2 * m));
